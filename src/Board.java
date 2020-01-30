@@ -15,10 +15,16 @@ public class Board extends JPanel implements ActionListener {
 
     public Board(Game game){
         this.game = game;
-        setPreferredSize(new Dimension(1000,900));
-        setBackground(Color.BLACK);
+
+        player = new Paddle(this, game);
+        ball = new Ball(this);
+
         timer = new Timer(1000/60, this);
         timer.start();
+
+        setPreferredSize(new Dimension(1000,900));
+        setBackground(Color.BLACK);
+
     }
 
     public void setup(){
@@ -35,7 +41,9 @@ public class Board extends JPanel implements ActionListener {
     public void paint(Graphics g){
         super.paintComponent(g);
 
-
+        g.setColor(Color.white);
+        ball.paint(g);
+        player.paint(g);
 
     }
 
