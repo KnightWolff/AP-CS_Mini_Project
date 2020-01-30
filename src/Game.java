@@ -8,7 +8,7 @@ public class Game extends JFrame implements KeyListener {
 
     public Game(){
 
-        setTitle("Break Briccs");
+        setTitle("Break Some Thicc Briccs");
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
