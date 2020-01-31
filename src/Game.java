@@ -12,12 +12,12 @@ public class Game extends JFrame implements KeyListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        board = new Board(this);
+        board = new Board();
         add(board);
-        addKeyListener(this);
         pack();
 
-       // board.setup();
+        board.setup();
+
         setLocationRelativeTo(null);
     }
 
