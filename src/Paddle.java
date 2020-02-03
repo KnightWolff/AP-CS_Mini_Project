@@ -2,33 +2,55 @@ import java.awt.*;
 
 public class Paddle {
 
-        private int x, y;
-        private final int WIDTH = 150, HEIGHT = 20;
+    Game game;
+    Board board;
+    public int x, y;
+    public final int WIDTH = 150, HEIGHT = 10;
+    public int dx = 5;
 
-        Board board;
-        Game game;
-        private int dy = 5;
+    public Paddle(Board board, Game game){
 
-        public Paddle(Board board, Game game){
-            x = 0;
-            y= 0;
-            this.board = board;
-            this.game = game;
-        }
+        x = (board.getWidth() - (WIDTH/2))/2;
+        y = (board.getHeight() + HEIGHT) - 45;
+        this.board = board;
+        this.game = game;
+    }
 
-        public void setPosition(int x, int y){
-            this.x = x - WIDTH/2;
-            this.y = y - HEIGHT/2;
-        }
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,WIDTH,HEIGHT);
+    }
 
-        public Rectangle getBounds(){
-            return new Rectangle(x,y,WIDTH,HEIGHT);
+    public void move(){
+     if( game.isRightPressed()){
+          if(x<board.getWidth() - WIDTH) {
+              x += dx;
+          }
+      }
+      if(game.isLeftPressed()){
+          if(x>0){
+              x-=dx;
+          }
+      }
 
-        }
+    }
 
-        public void paint(Graphics g){
-            g.fillRect(x,y,WIDTH,HEIGHT);
-        }
+    public void paint(Graphics g) {
+        g.fillRect(x,y,WIDTH,HEIGHT);
+    }
 
+    public int getX() {
+        return x;
+    }
 
+    public int getY() {
+        return y;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
 }

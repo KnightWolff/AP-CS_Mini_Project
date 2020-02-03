@@ -1,24 +1,34 @@
 import java.awt.*;
 
 public class Ball {
-    private int x,y;
-    private final int DIAMETER = 30;
-    private final int SPEED = 8;
 
-    double dx = SPEED, dy = SPEED;
-
+    public int x, y;
+    public final int DIAM = 15;
+    public int dx = 3, dy =3;
     Board board;
 
-    public Ball(Board board) {
-        x = 100;
-        y = 100;
-
-
+    public Ball(Board board, Paddle paddle){
+        x = (paddle.getX() + paddle.getWIDTH()/2) - DIAM/2;
+        y = paddle.getY() - paddle.getHEIGHT() - DIAM/2;
         this.board = board;
     }
 
-    public void paint(Graphics g){
-        g.fillOval(x,y,DIAMETER,DIAMETER);
+    public void move(){
+        if(this.x <= 0){
+            dx*=-1;
+        }
+        if(x+DIAM >= board.getWidth()){
+            dx*=-1;
+        }
+        if(y<=0 || y+DIAM >= board.getHeight()){
+            dy*=-1;
+        }
+        x+=dx;
+        y+=dy;
+
     }
 
+    public void paint(Graphics g){
+        g.fillOval(x,y,DIAM,DIAM);
+    }
 }
