@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,81 +6,30 @@ import java.awt.event.ActionListener;
 
 public class Board extends JPanel implements ActionListener {
 
-    Paddle paddle;
+    Paddle player;
     Ball ball;
-    Bricks[][] brick;
-    Game game;
+    Bricks[][] bricks;
     Timer timer;
-    Color pick;
-    int num = 0;
 
+    public Board() {
+        player = new Paddle();
+        ball = new Ball();
 
-    public Board(Game game){
+        this.setSize(new Dimension(1000,900));
         this.setBackground(Color.black);
-        this.setPreferredSize(new Dimension(1500,600));
-
-        this.game = game;
-        brick = new Bricks[22][6];
-        timer = new Timer(1000/60, this);
-        timer.start();
-    }
-
-    public void setup(){
-        paddle = new Paddle(this, game);
-        ball =new Ball(this, paddle);
-
-        for(int col = 0; col < 6; col++) {
-            for(int row = 0; row < 22; row++){
-                brick[row][col] = new Bricks(this, row, col);
-            }
-        }
-
-
-
-
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ball.move();
-        paddle.move();
-
-        repaint();
-    }
-
-    public void paint(Graphics g){
-        super.paintComponent(g);
-
-        g.setColor(Color.white);
-        paddle.paint(g);
-        ball.paint(g);
-
-        for(int col = 0; col < 6; col++) {
-            g.setColor(colorMaker());
-            for(int row = 0; row < 22; row++){
-                g.setColor(colorMaker());
-                (brick[row][col]).paint(g);
-            }
-        }
 
     }
 
-    public Color colorMaker(){
 
-       switch(num){
-            case 0: pick = Color.getColor("yellow", Color.yellow);
-            num++;
-            break;
-            case 1: pick = Color.getColor("red", Color.red);
-            num++;
-            break;
-            case 2: pick = Color.getColor("blue", Color.blue);
-            num = 0;
-            break;
-        }
-        return pick;
+    public void paintComponents(Graphics g){
+        super.paint(g);
+
+        g.setColor(Color.red);
+
     }
-
 }
